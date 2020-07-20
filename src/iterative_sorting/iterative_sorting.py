@@ -48,6 +48,22 @@ What is the time and space complexity of the counting sort algorithm?
 '''
 def counting_sort(arr, maximum=None):
     # Your code here
-
-
+    if len(arr) == 0:
+        return arr
+    count = []
+    if maximum != None:
+        for i in range(maximum + 1):
+            count.append(0)
+    for i in arr:
+        if i < 0:
+            return "Error, negative numbers not allowed in Count Sort"
+        # Next part is needed because maximum is not always given:
+        while (len(count) - 1) < i:
+            count.append(0)
+        count[i] += 1
+    arr = []
+    for j in range(len(count)):
+        while count[j] > 0:
+            arr.append(j)
+            count[j] -= 1
     return arr
